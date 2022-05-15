@@ -1,0 +1,94 @@
+<!-- paso 2 información de la actividad y estudiante-->
+<head>
+  <!-- Cesar O. Torres
+ Tarea 2.2-->
+</head>
+
+<!-- paso 3 de la asignación --> 
+<article>
+  <h2>Página Web Dinámica - Tarea 2.2</h2>
+
+<!-- control de entrada de texto y bbotón en un form-->
+  <form>
+    <!-- Si añado el atributo onfocus="this.value=''" en en input text hace que el valor entrado en elcontrol se borre cuando se hace click en el -->
+     <input type="text" id="item"  > 
+     <input type="button" id ="add" value="add">
+    <label for=""></label>
+  </form>
+
+  <ol id="list"></ol>
+  <label id="thx"></label>
+</article>
+
+<!-- paso 3 de la asignación --> 
+<script>
+  
+// paso 4 de la asignación (3 puntos) declaración de variables
+//paso 5 de la asignación (3puntos) Crear función:
+      function processInput()
+      {
+        /* cree las variables dentro de la función
+           no fuera como indica el ejercicio */
+          var i = ",";
+          var listItem = "";
+         
+        
+//paso 6-a Establecer una estructura de control if con el valor de listItem concatenado con el valor de i (3 puntos)
+              if (document.getElementById("item").value != "")
+              {
+                //creando el elemento <li> para la lista
+                    var item = document.createElement("li");
+                
+                // estableciendo el valor del input text a la variable i
+                    i = document.getElementById("item").value;
+
+                /* estableciendo el valor de la variable con el texto
+                         concatenado al valor de la variable i */
+                listItem = "Sugerencia de artículo: " + i;
+
+// paso 6-b Establecer el contenido del elemento id igual a listItem con el valor del elemento i. (3 puntos) 
+
+                /* los elementos <li> contendrán los valores 
+                        asignados a listItem */
+                item.innerHTML = listItem;
+
+// paso 6-c Establecer el valor del elemento id con el valor en una etiqueta “Label”. (3 puntos)
+                /* se esta añadiendo al elemento <ol> los <li> con el contenido
+                      que se incluye en listItem. */
+                document.getElementById('list').appendChild(item);
+                
+                /* este código hace lo mismo que el atributo  
+                   onfocus="this.value=''" en en input text */
+                document.getElementById('item').value= "";
+                
+              }  
+        //termina if
+             
+            
+// Paso 7 Antes del cierre } de la función, crea una declaración  if que cambie el contenido del elemento id por un mensaje que diga: “Gracias por sus sugerencias.”  (3 puntos). 
+        if (document.getElementById('list').childElementCount == 5)
+        {
+          /* este código desactiva el boton para que no añada más elementos 
+             la lista */
+          document.getElementById("add").disabled = true;
+          
+          /* este código añade texto a un label en HTML */
+          document.getElementById("thx").innerHTML ="¡Gracias por su sugerencia!";
+          
+        }
+       
+      }
+//Paso 8 Luego del cierre } de la codificación de la función, introduce el código necesario para crear un detector de eventos que verifique si el código JavaScript es compatible con versiones anteriores de Internet Explorer.  (10 puntos) 
+
+  if (document.getElementById("add").addEventListener) 
+  { 
+    document.getElementById("add").addEventListener("click",processInput,false);
+     
+ 
+  } 
+  else if (document.getElementById("add").attachEvent) 
+  { 
+      document.getElementById("add").attachEvent("onclick", processInput); 
+     
+  } 
+</script>
